@@ -1,0 +1,5 @@
+1|jenisatk8|p
+2|jenisatk10|p
+3|baku|p
+4|Alat Tulis|p
+JEN001|Alat Tulis|p
