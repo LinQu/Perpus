@@ -1,7 +1,3 @@
-<?php
-include '../Connection/koneksi.php';
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -151,7 +147,8 @@ include '../Connection/koneksi.php';
                 </thead>
                 <tbody>
                   <?php
-                  $view = mysqli_query($koneksi, "SELECT * FROM jenis_buku");
+                  include '../Connection/koneksi.php';
+                  $view = mysqli_query($koneksi, "SELECT * FROM jenis_buku WHERE status = 1");
                   while ($row = mysqli_fetch_array($view)) {
                     echo '
                     <tr>
@@ -257,16 +254,18 @@ include '../Connection/koneksi.php';
 <?php
 
 if (isset($_GET['id'])) {
-  $id = $_GET['idjenis'];
+  $id = $_GET['id'];
+
   delete($id);
 }
 
 function delete($id)
 {
   include '../Connection/koneksi.php';
-  $delete = mysqli_query($koneksi, "DELETE FROM jenisbuku WHERE id_jenis_buku = '$id'");
+
+  $delete = mysqli_query($koneksi, "UPDATE jenis_buku SET status = 0 WHERE id_jenis_buku = '$id'");
   if ($delete) {
-    echo '<script>alert("Data berhasil dihapus");window.location.href="index.php"</script>';
+    echo '<script>window.location.href="index.php";alert("Data Berhasil Dihapus")</script>';
   } else {
     echo '<script>alert("Data gagal dihapus");window.location.href="index.php"</script>';
   }

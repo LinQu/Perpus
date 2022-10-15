@@ -158,7 +158,7 @@ include '../Connection/koneksi.php';
                 </thead>
                 <tbody>
                   <?php
-                  $view = mysqli_query($koneksi, "SELECT * FROM vendor");
+                  $view = mysqli_query($koneksi, "SELECT * FROM vendor WHERE status = 1");
                   while ($row = mysqli_fetch_array($view)) {
                     echo '
                     <tr>
@@ -272,7 +272,7 @@ if (isset($_GET['id'])) {
 function delete($id)
 {
   include '../Connection/koneksi.php';
-  $delete = mysqli_query($koneksi, "DELETE FROM vendor WHERE id_vendor = '$id'");
+  $delete = mysqli_query($koneksi, "UPDATE vendor SET status = 0 WHERE id_vendor = '$id'");
   if ($delete) {
     echo "<script>alert('Data Berhasil Dihapus');window.location.href='index.php'</script>";
   } else {
