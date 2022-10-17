@@ -155,8 +155,8 @@
                       <td>' . $row['id_jenis_buku'] . '</td>
                       <td>' . $row['nama_jenis_buku'] . '</td>
                       <td>
-                        <a href="edit.php?id=' . $row['id_jenis_buku'] . '">Edit</a> |
-                        <a href="?id=' . $row['id_jenis_buku'] . '">Delete</a>
+                        <a href="edit.php?id=' . $row['id_jenis_buku'] . '"><button class="btn btn-primary">Edit</button></a> |
+                        <a href="?id=' . $row['id_jenis_buku'] . '"><button class="btn btn-danger">Delete</button></a>
                       </td>
                     </tr>
                     ';

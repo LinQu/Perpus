@@ -168,8 +168,8 @@ include '../Connection/koneksi.php';
                       <td>' . $row['telp_vendor'] . '</td>
                       <td>' . $row['email_vendor'] . '</td>
                       <td>
-                        <a href="edit.php?id=' . $row['id_vendor'] . '">Edit</a> |
-                        <a href="?id=' . $row['id_vendor'] . '">Delete</a>
+                        <a href="edit.php?id=' . $row['id_vendor'] . '"><button class="btn btn-primary">Edit</button>t</a> |
+                        <a href="?id=' . $row['id_vendor'] . '"><button class="btn btn-danger">Delete</button></a>
                       </td>
                     </tr>
                     ';

@@ -13,6 +13,22 @@ $alamat = $row['alamat_vendor'];
 $notelp = $row['telp_vendor'];
 $email = $row['email_vendor'];
 
+if (isset($_POST['submit'])) {
+  $idvendor = $_POST['idvendor'];
+  $nama = $_POST['name'];
+  $alamat = $_POST['address'];
+  $notelp = $_POST['notelp'];
+  $email = $_POST['email'];
+
+  $update = "UPDATE vendor SET nama_vendor='$nama', alamat_vendor='$alamat', telp_vendor='$notelp', email_vendor='$email' WHERE id_vendor='$idvendor'";
+  $result = mysqli_query($koneksi, $update);
+  if ($result) {
+    echo "<script>window.location.href='index.php'</script>";
+  } else {
+    echo "<script>alert('Data Gagal Diupdate');window.location.href='index.php'</script>";
+  }
+}
+
 
 
 ?>
@@ -44,7 +60,7 @@ $email = $row['email_vendor'];
             <!-- /.card-header -->
 
             <!-- form start -->
-            <form action="editaction.php" method="post">
+            <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
               <div class="card-body">
                 <div class="form-group">
                   <label for="idvendor" class="form-label">ID Vendor</label>
@@ -74,7 +90,7 @@ $email = $row['email_vendor'];
               <!-- /.card-body -->
 
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                <button type="submit" name="submit" class="btn btn-primary btn-block">Submit</button>
               </div>
             </form>
           </div>

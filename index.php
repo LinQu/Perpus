@@ -261,7 +261,7 @@ function dataatk()
 function datajenis()
 {
   include './Connection/koneksi.php';
-  $sql = "SELECT COUNT(*) AS total FROM jenis_buku";
+  $sql = "SELECT COUNT(*) AS total FROM jenis_buku WHERE status = '1'";
   $query = mysqli_query($koneksi, $sql);
   $data = mysqli_fetch_array($query);
 
@@ -271,7 +271,7 @@ function datajenis()
 function datavendor()
 {
   include './Connection/koneksi.php';
-  $sql = "SELECT COUNT(*) AS total FROM vendor";
+  $sql = "SELECT COUNT(*) AS total FROM vendor WHERE status = '1'";
   $query = mysqli_query($koneksi, $sql);
   $data = mysqli_fetch_array($query);
 
