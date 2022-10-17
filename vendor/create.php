@@ -27,7 +27,7 @@
             <!-- /.card-header -->
 
             <!-- form start -->
-            <form action="createaction.php" method="post">
+            <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
               <div class="card-body">
                 <div class="form-group">
                   <label for="idvendor" class="form-label">ID Vendor</label>
@@ -57,7 +57,7 @@
               <!-- /.card-body -->
 
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                <button type="submit" name="submit" class="btn btn-primary btn-block">Submit</button>
               </div>
             </form>
           </div>
@@ -68,6 +68,26 @@
 </div>
 
 <?php
+
+include '../Connection/koneksi.php';
+if (isset($_POST['submit'])) {
+  $idvendor = $_POST['idvendor'];
+  $nama = $_POST['name'];
+  $alamat = $_POST['address'];
+  $notelp = $_POST['notelp'];
+  $email = $_POST['email'];
+  $status = 1;
+
+  $query = "INSERT INTO vendor (id_vendor, nama_vendor, alamat_vendor, telp_vendor, email_vendor,status) VALUES ('$idvendor', '$nama', '$alamat', '$notelp', '$email','$status')";
+  $result = mysqli_query($koneksi, $query);
+
+  if ($result) {
+    echo "<script>window.location.href='index.php'</script>";
+  } else {
+    echo "<script>alert('Data Gagal Dihapus');window.location.href='index.php'</script>";
+  }
+}
+
 function idotomatis()
 {
   include '../Connection/koneksi.php';

@@ -7,12 +7,12 @@ include '../Connection/koneksi.php';
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Create ATK</h1>
+          <h1 class="m-0 text-dark">Create Buku</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Create ATK</li>
+            <li class="breadcrumb-item active">Create Buku</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -29,7 +29,7 @@ include '../Connection/koneksi.php';
             <!-- /.card-header -->
 
             <!-- form start -->
-            <form action="createaction.php" method="post">
+            <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
               <div class="card-body">
                 <div class="form-group">
                   <label for="idatk" class="form-label">ID Buku</label>
@@ -80,7 +80,7 @@ include '../Connection/koneksi.php';
               <!-- /.card-body -->
 
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                <button type="submit" name="submit" class="btn btn-primary btn-block">Submit</button>
               </div>
             </form>
           </div>
@@ -91,7 +91,27 @@ include '../Connection/koneksi.php';
 </div>
 
 <?php
-include '../layout/footer.php';
+
+include '../Connection/koneksi.php';
+
+if (isset($_POST['submit'])) {
+  $id = $_POST['idbuku'];
+  $nama = $_POST['nama'];
+  $jenis = $_POST['jenis'];
+  $vendor = $_POST['vendor'];
+  $stok = $_POST['stok'];
+  $status = "1";
+
+  $insert = "INSERT INTO buku (id_buku, nama_buku, id_jenis_buku, id_vendor, jml_stok,status) VALUES ('$id', '$nama', '$jenis', '$vendor', '$stok','$status')";
+  $result = mysqli_query($koneksi, $insert);
+
+
+  if ($result) {
+    echo "<script>window.location.href='index.php'</script>";
+  } else {
+    echo "<script>alert('Data gagal ditambahkan!'); window.location.href='create.php'</script>";
+  }
+}
 
 function idotomatis()
 {
@@ -108,3 +128,5 @@ function idotomatis()
   return $newID;
 }
 ?>
+
+<?php include '../layout/footer.php'; ?>

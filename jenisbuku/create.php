@@ -29,7 +29,7 @@
             <!-- /.card-header -->
 
             <!-- form start -->
-            <form action="createaction.php" method="post">
+            <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
               <div class="card-body">
                 <div class="form-group">
                   <label for="idjenis" class="form-label">ID Jenis</label>
@@ -44,7 +44,7 @@
               <!-- /.card-body -->
 
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                <button type="submit" name="submit" class="btn btn-primary btn-block">Submit</button>
               </div>
             </form>
           </div>
@@ -55,6 +55,22 @@
 </div>
 
 <?php
+include '../Connection/koneksi.php';
+if (isset($_POST['submit'])) {
+  $idjenis = $_POST['idjenis'];
+  $jenis = $_POST['jenis'];
+  $status = '1';
+
+  $sql = "INSERT INTO jenis_buku (id_jenis_buku, nama_jenis_buku,status) VALUES ('$idjenis', '$jenis', '$status')";
+  $query = mysqli_query($koneksi, $sql);
+
+  if ($query) {
+    echo "<script>window.location.href='index.php'</script>";
+  } else {
+    echo "<script>alert('Data gagal ditambahkan!'); window.location.href='create.php'</script>";
+  }
+}
+
 function idotomatis()
 {
   include '../Connection/koneksi.php';
