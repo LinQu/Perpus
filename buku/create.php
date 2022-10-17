@@ -1,5 +1,23 @@
 <?php include '../layout/header.php';
 include '../Connection/koneksi.php';
+
+if (isset($_POST['submit'])) {
+  $id = $_POST['idbuku'];
+  $nama = $_POST['nama'];
+  $jenis = $_POST['jenis'];
+  $vendor = $_POST['vendor'];
+  $stok = $_POST['stok'];
+
+  $insert = "INSERT INTO buku (id_buku, nama_buku, id_jenis_buku, id_vendor, jml_stok) VALUES ('$id', '$nama', '$jenis', '$vendor', '$stok')";
+  $result = mysqli_query($koneksi, $insert);
+
+
+  if ($result) {
+    echo "<script>window.location.href='index.php'</script>";
+  } else {
+    echo "<script>alert('Data gagal ditambahkan!'); window.location.href='create.php'</script>";
+  }
+}
 ?>
 
 <div class="content-wrapper">
@@ -92,26 +110,7 @@ include '../Connection/koneksi.php';
 
 <?php
 
-include '../Connection/koneksi.php';
 
-if (isset($_POST['submit'])) {
-  $id = $_POST['idbuku'];
-  $nama = $_POST['nama'];
-  $jenis = $_POST['jenis'];
-  $vendor = $_POST['vendor'];
-  $stok = $_POST['stok'];
-  $status = "1";
-
-  $insert = "INSERT INTO buku (id_buku, nama_buku, id_jenis_buku, id_vendor, jml_stok,status) VALUES ('$id', '$nama', '$jenis', '$vendor', '$stok','$status')";
-  $result = mysqli_query($koneksi, $insert);
-
-
-  if ($result) {
-    echo "<script>window.location.href='index.php'</script>";
-  } else {
-    echo "<script>alert('Data gagal ditambahkan!'); window.location.href='create.php'</script>";
-  }
-}
 
 function idotomatis()
 {

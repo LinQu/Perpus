@@ -9,7 +9,7 @@ include '../Connection/koneksi.php';
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ATK Manajemen</title>
+  <title>Buku Manajemen</title>
 
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -157,29 +157,16 @@ include '../Connection/koneksi.php';
                 <tbody>
                   <?php
                   //view data jenis widh id
-                  $sql = "SELECT * FROM buku";
+                  $sql = "SELECT id_buku,nama_buku,jenis_buku.nama_jenis_buku,vendor.nama_vendor,jml_stok FROM buku inner join jenis_buku on buku.id_jenis_buku = jenis_buku.id_jenis_buku inner join vendor on buku.id_vendor = vendor.id_vendor;";
                   $result = mysqli_query($koneksi, $sql);
                   if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
                       $id = $row['id_buku'];
                       $nama = $row['nama_buku'];
-                      $jenis = $row['id_jenis_buku'];
-                      $vendor = $row['id_vendor'];
+                      $jenis = $row['nama_jenis_buku'];
+                      $vendor = $row['nama_vendor'];
                       $stok = $row['jml_stok'];
-                      $sql2 = "SELECT * FROM jenis_buku WHERE id_jenis_buku = '$jenis'";
-                      $result2 = mysqli_query($koneksi, $sql2);
-                      if (mysqli_num_rows($result2) > 0) {
-                        while ($row2 = mysqli_fetch_assoc($result2)) {
-                          $jenis = $row2['nama_jenis_buku'];
-                        }
-                      }
-                      $sql3 = "SELECT * FROM vendor WHERE id_vendor = '$vendor'";
-                      $result3 = mysqli_query($koneksi, $sql3);
-                      if (mysqli_num_rows($result3) > 0) {
-                        while ($row3 = mysqli_fetch_assoc($result3)) {
-                          $vendor = $row3['nama_vendor'];
-                        }
-                      }
+
                       echo "<tr>";
                       echo "<td>" . $id . "</td>";
                       echo "<td>" . $nama . "</td>";
