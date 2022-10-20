@@ -17,6 +17,7 @@ $sql2 = "SELECT * FROM jenis_buku WHERE id_jenis_buku = '$jenis'";
 $result2 = mysqli_query($koneksi, $sql2);
 if (mysqli_num_rows($result2) > 0) {
   while ($row2 = mysqli_fetch_assoc($result2)) {
+    $idjenis = $row2['id_jenis_buku'];
     $jenis = $row2['nama_jenis_buku'];
   }
 }
@@ -24,6 +25,7 @@ $sql3 = "SELECT * FROM vendor WHERE id_vendor = '$vendor'";
 $result3 = mysqli_query($koneksi, $sql3);
 if (mysqli_num_rows($result3) > 0) {
   while ($row3 = mysqli_fetch_assoc($result3)) {
+    $idvendor = $row3['id_vendor'];
     $vendor = $row3['nama_vendor'];
   }
 }
@@ -76,7 +78,7 @@ $stok = $row['jml_stok'];
                 <div class="form-group">
                   <label for="jenis" class="form-label">Jenis</label>
                   <select id="jenis" class="form-select" name="jenis">
-                    <option selected><?php echo $jenis1 ?></option>
+                    <option selected value="<?php echo $idjenis ?>"><?php echo $jenis1 ?></option>
                     <?php
                     $sql = "SELECT * FROM jenis_buku";
                     $result = mysqli_query($koneksi, $sql);
@@ -91,7 +93,7 @@ $stok = $row['jml_stok'];
                 <div class="form-group">
                   <label for="vendor" class="form-label">Vendor</label>
                   <select id="vendor" class="form-select" name="vendor">
-                    <option selected><?php echo $vendor1 ?></option>
+                    <option selected value="<?php echo $idvendor ?>"><?php echo $vendor1 ?></option>
                     <?php
                     $sql = "SELECT * FROM vendor";
                     $result = mysqli_query($koneksi, $sql);

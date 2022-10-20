@@ -11,7 +11,7 @@ include '../Connection/koneksi.php';
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Buku Manajemen</title>
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -137,8 +137,8 @@ include '../Connection/koneksi.php';
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <a href="create.php"><button class="btn btn-primary">Tambah</button></a><br><br>
-
+          <a href="create.php"><button class="btn btn-primary">Tambah</button></a>
+          <button class="btn btn-success" onclick="search()" name="print"><i class="bi bi-printer-fill"></i> Print</button><br><br>
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Vendor</h3>
@@ -168,7 +168,7 @@ include '../Connection/koneksi.php';
                       <td>' . $row['telp_vendor'] . '</td>
                       <td>' . $row['email_vendor'] . '</td>
                       <td>
-                        <a href="edit.php?id=' . $row['id_vendor'] . '"><button class="btn btn-primary">Edit</button>t</a> |
+                        <a href="edit.php?id=' . $row['id_vendor'] . '"><button class="btn btn-primary">Edit</button></a> |
                         <a href="?id=' . $row['id_vendor'] . '"><button class="btn btn-danger">Delete</button></a>
                       </td>
                     </tr>
@@ -256,7 +256,28 @@ include '../Connection/koneksi.php';
         "info": true,
         "autoWidth": false,
       });
+      $('#example2').on('search.dt', function() {
+        var value = $('.dataTables_filter input').val();
+        console.log(value); // <-- the value
+        var data = {
+          "search": value
+        };
+        $.post("pdf.php", data);
+
+      });
+
+
     });
+
+    function search() {
+      var value = $('.dataTables_filter input').val();
+      console.log(value); // <-- the value
+      var data = {
+        "search": value
+      };
+      $.post("pdf.php", data);
+      window.location.href = "pdf.php?search=" + value;
+    }
   </script>
 </body>
 
@@ -264,10 +285,17 @@ include '../Connection/koneksi.php';
 
 <?php
 
+
+
+
+
+
+
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
   delete($id);
 }
+
 
 function delete($id)
 {

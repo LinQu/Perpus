@@ -173,7 +173,7 @@ include '../Connection/koneksi.php';
                       echo "<td>" . $jenis . "</td>";
                       echo "<td>" . $vendor . "</td>";
                       echo "<td>" . $stok . "</td>";
-                      echo "<td><a href='edit.php?id=$id'><button class='btn btn-primary'>Edit</button></a> <a href='delete.php?id=$id'><button class='btn btn-danger'>Delete</button></a></td>";
+                      echo "<td><a href='edit.php?id=$id'><button class='btn btn-primary'>Edit</button></a> <a href='?id=$id'><button class='btn btn-danger'>Delete</button></a></td>";
                       echo "</tr>";
                     }
                   }

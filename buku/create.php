@@ -64,7 +64,7 @@ if (isset($_POST['submit'])) {
                   <select id="jenis" class="form-select" name="jenis">
                     <option selected>Choose...</option>
                     <?php
-                    $sql = "SELECT * FROM jenis_buku";
+                    $sql = "SELECT * FROM jenis_buku where status = 1";
                     $result = mysqli_query($koneksi, $sql);
                     while ($row = mysqli_fetch_assoc($result)) {
                       echo "<option value='" . $row['id_jenis_buku'] . "'>" . $row['nama_jenis_buku'] . "</option>";
@@ -79,7 +79,7 @@ if (isset($_POST['submit'])) {
                   <select id="vendor" class="form-select" name="vendor">
                     <option selected>Choose...</option>
                     <?php
-                    $sql = "SELECT * FROM vendor";
+                    $sql = "SELECT * FROM vendor where status = 1";
                     $result = mysqli_query($koneksi, $sql);
                     while ($row = mysqli_fetch_assoc($result)) {
                       echo "<option value='" . $row['id_vendor'] . "'>" . $row['nama_vendor'] . "</option>";
