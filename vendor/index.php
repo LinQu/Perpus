@@ -256,26 +256,16 @@ include '../Connection/koneksi.php';
         "info": true,
         "autoWidth": false,
       });
-      $('#example2').on('search.dt', function() {
-        var value = $('.dataTables_filter input').val();
-        console.log(value); // <-- the value
-        var data = {
-          "search": value
-        };
-        $.post("pdf.php", data);
-
-      });
 
 
     });
 
     function search() {
       var value = $('.dataTables_filter input').val();
-      console.log(value); // <-- the value
+      // console.log(value); // <-- the value
       var data = {
         "search": value
       };
-      $.post("pdf.php", data);
       window.location.href = "pdf.php?search=" + value;
     }
   </script>

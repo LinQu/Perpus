@@ -11,6 +11,8 @@ include '../Connection/koneksi.php';
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Buku Manajemen</title>
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -134,7 +136,9 @@ include '../Connection/koneksi.php';
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <a href="create.php"><button class="btn btn-primary">Tambah</button></a><br><br>
+          <a href="create.php"><button class="btn btn-primary">Tambah</button></a>
+          <button class="btn btn-success" onclick="search()" name="print"><i class="bi bi-printer-fill"></i> Print</button><br><br>
+
 
           <div class="card">
             <div class="card-header">
@@ -195,7 +199,7 @@ include '../Connection/koneksi.php';
       <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
       All rights reserved.
       <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 3.0.1
+        <div id="jam"></div>
       </div>
     </footer>
 
@@ -261,6 +265,30 @@ include '../Connection/koneksi.php';
         "autoWidth": false,
       });
     });
+
+    function search() {
+      var value = $('.dataTables_filter input').val();
+      console.log(value); // <-- the value 
+      var data = {
+        "search": value
+      };
+
+      window.location.href = "sheet.php?search=" + value;
+    }
+
+    setInterval(function() {
+      var waktu = new Date();
+      var jam = waktu.getHours();
+      var menit = waktu.getMinutes();
+      var detik = waktu.getSeconds();
+      var jam = jam < 10 ? "0" + jam : jam;
+      var menit = menit < 10 ? "0" + menit : menit;
+      var detik = detik < 10 ? "0" + detik : detik;
+      var jam = jam < 10 ? "0" + jam : jam;
+
+      var jam = jam + ":" + menit + ":" + detik;
+      document.getElementById("jam").innerHTML = jam + " ";
+    }, 1000);
   </script>
 </body>
 

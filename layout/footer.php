@@ -2,7 +2,9 @@
   <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
   All rights reserved.
   <div class="float-right d-none d-sm-inline-block">
-    <b>Version</b> 3.0.1
+    <div id="jam">
+
+    </div>
   </div>
 </footer>
 
@@ -68,6 +70,20 @@
       "autoWidth": false,
     });
   });
+
+  setInterval(function() {
+    var waktu = new Date();
+    var jam = waktu.getHours();
+    var menit = waktu.getMinutes();
+    var detik = waktu.getSeconds();
+    var jam = jam < 10 ? "0" + jam : jam;
+    var menit = menit < 10 ? "0" + menit : menit;
+    var detik = detik < 10 ? "0" + detik : detik;
+    var jam = jam < 10 ? "0" + jam : jam;
+
+    var jam = jam + ":" + menit + ":" + detik;
+    document.getElementById("jam").innerHTML = jam + " ";
+  }, 1000);
 </script>
 </body>
 

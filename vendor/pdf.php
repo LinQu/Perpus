@@ -30,9 +30,9 @@ if (mysqli_num_rows($query) == 0) {
 if (mysqli_num_rows($query) == 0) {
   $query = mysqli_query($koneksi, "SELECT * FROM vendor WHERE email_vendor LIKE '%" . $data . "%' and status = 1");
 }
-if (mysqli_num_rows($query) == 0) {
-  $query = mysqli_query($koneksi, "SELECT * FROM vendor WHERE status = 1");
-}
+// if (mysqli_num_rows($query) == 0) {
+//   $query = mysqli_query($koneksi, "SELECT * FROM vendor WHERE status = 1");
+// }
 $no = 1;
 while ($row = mysqli_fetch_array($query)) {
   $pdf->Cell(10, 6, $no, 1, 0);
