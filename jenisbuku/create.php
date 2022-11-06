@@ -1,60 +1,68 @@
 <?php include '../layout/header.php'; ?>
-<?php include '../Connection/koneksi.php'; ?>
+<?php include '../Connection/koneksi.php';
+if (isset($_SESSION['nama']) && isset($_SESSION['role']) && $_SESSION['role'] == '1') {
+?>
 
 
-<div class="content-wrapper">
-  <div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Create Jenis Buku</h1>
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Create Jenis Buku</li>
-          </ol>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-  </div>
-  <!-- /.content-header -->
+  <div class="content-wrapper">
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Create Jenis Buku</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Create Jenis Buku</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
 
-  <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card card-primary">
-            <div class="card-header"></div>
-            <!-- /.card-header -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-primary">
+              <div class="card-header"></div>
+              <!-- /.card-header -->
 
-            <!-- form start -->
-            <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-              <div class="card-body">
-                <div class="form-group">
-                  <label for="idjenis" class="form-label">ID Jenis</label>
-                  <input type="text" class="form-control" id="idjenis" name="idjenis" value="<?php echo idotomatis() ?>" readonly>
+              <!-- form start -->
+              <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="idjenis" class="form-label">ID Jenis</label>
+                    <input type="text" class="form-control" id="idjenis" name="idjenis" value="<?php echo idotomatis() ?>" readonly>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="jenis" class="form-label">Jenis Buku</label>
+                    <input type="text" class="form-control" id="jenis" name="jenis">
+                  </div>
                 </div>
+                <!-- /.card-body -->
 
-                <div class="form-group">
-                  <label for="jenis" class="form-label">Jenis Buku</label>
-                  <input type="text" class="form-control" id="jenis" name="jenis">
+                <div class="card-footer">
+                  <button type="submit" name="submit" class="btn btn-primary btn-block">Submit</button>
                 </div>
-              </div>
-              <!-- /.card-body -->
-
-              <div class="card-footer">
-                <button type="submit" name="submit" class="btn btn-primary btn-block">Submit</button>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-</div>
+    </section>
+  </div>
 
 <?php
+} else if (isset($_SESSION['nama']) && isset($_SESSION['role']) && $_SESSION['role'] == '0') {
+  echo "<script language=\"javascript\">document.location.href='../layout/access.php';</script>";
+} else {
+  echo "<script language=\"javascript\">alert(\"Silahkan Login\");document.location.href='../index.php';</script>";
+}
+
 include '../Connection/koneksi.php';
 if (isset($_POST['submit'])) {
   $idjenis = $_POST['idjenis'];
@@ -85,4 +93,5 @@ function idotomatis()
 }
 ?>
 
-<?php include '../layout/footer.php'; ?>
+<?php
+include '../layout/footer.php'; ?>
